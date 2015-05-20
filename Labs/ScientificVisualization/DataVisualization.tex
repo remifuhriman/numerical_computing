@@ -1,9 +1,12 @@
-\lab{Applications}{Data Visualization}{Data Visualization} 
+\lab{Applications}{Data Visualization}
 \objective{Use data visualizations to explore data and communicate it to others.}
 \label{lab:DataVis}
 
+\textit{"A sentence should contain no unnecessary words, a paragraph no unnecessary sentences, for the same reason that a drawing should contain no unnecessary lines and a machine no unnecessary parts."} -- \emph{Strunk and White}
+
+
 \section*{What is data visualization?} 
-Data visualizations (or graphs) are used to understand and explore data as well as communicate results to others. 
+Data visualizations (or graphs) are used to understand and explore data, find patterns, and communicate results to others. 
 Just as a picture is worth a thousand words, a graph is much easier than a thousand data points for the human mind to interpret. 
 Though anyone working with data benefits from graphing it, data visualization is also an independent field that studies the interplay between mathematics, statistics, and the visual arts.
 
@@ -11,28 +14,82 @@ Though anyone working with data benefits from graphing it, data visualization is
 There are many standard ways to visualize data, and some consistently reveal and communicate the most information about certain kinds of data sets. 
 Here are some standard plots and some examples of data they are commonly used to visualize.
 
-\begin{enumerate}
-\item A \emph{scatter plot} graphs $(x,y)$ tuples as points. 
-A scatter plot can reveal correlation (or lack thereof) between $x$ and $y$. 
-Use a scatter plot when your data is not ordered. 
-You can create a scatter plot in matplotlib with the command \li{plt.scatter()}.
+\begin{figure}
+\centering
+\begin{subfigure}{.3\textwidth}
+\centering
+\includegraphics[width=\textwidth]{line_plot.png}
+\end{subfigure}
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{scatter_plot.png}
+\end{subfigure}
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{scatter_dual_plot.png}
+\end{subfigure}
+\caption{Types of visualization: line plot, scatter plot, dual scatter plot}
+\label{fig:visTypes1}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}
+\centering
+\begin{subfigure}{.3\textwidth}
+\centering
+\includegraphics[width=\textwidth]{bar_graph.png}
+\end{subfigure}
+\begin{subfigure}{.3\textwidth}
+\centering
+\includegraphics[width=\textwidth]{histogram.png}
+\end{subfigure}
+\begin{subfigure}{.3\textwidth}
+\centering
+\includegraphics[width=\textwidth]{histogram_fancy.png}
+\end{subfigure}
+\caption{Types of visualization: bar graph, histogram, histogram with line of best fit}
+\label{fig:visTypes2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}
+\centering
+\begin{subfigure}{.3\textwidth}
+\centering
+\includegraphics[width=\textwidth]{pie_chart_sorted.png}
+\end{subfigure}
+\begin{subfigure}{.3\textwidth}
+\centering
+\includegraphics[width=\textwidth]{multiples.png}
+\end{subfigure}
+\begin{subfigure}{.3\textwidth}
+\centering
+\includegraphics[width=\textwidth]{PoT.png}
+\end{subfigure}
+\caption{Types of visualization: pie chart, multiples, plotting on top of each other}
+\label{fig:visTypes3}
+\end{figure}
 
+
+\begin{enumerate}
 \item A \emph{line plot} graphs $(x,y)$ tuples as points and then connects them with a line. 
 You should use a line plot when there is a natural order to your tuples. 
 For example, use a line plot to look for trends over time. 
 Recall that you can create a line plot in matplotlib with the command \li{plt.plot()}.
 
-\item A \emph{histogram} (or bar graph) depicts $(x,y)$ tuples as rectangles whose length is determined by $y$ (see Figure \ref{fig:healthcare}). 
+\item A \emph{scatter plot} graphs $(x,y)$ tuples as points. 
+A scatter plot can reveal correlation (or lack thereof) between $x$ and $y$. 
+Use a scatter plot to display a collection of 2D data that has no ordering. Sometimes, you may have additional categories and want to scatterplot both together, as seen in Figure \ref{fig:visTypes1}
+You can create a scatter plot in matplotlib with the command \li{plt.scatter()}.
+
+\item A \emph{bar chart} (or bar graph) depicts $(x,y)$ tuples as rectangles whose length is proportional to the value it represents. Discerete, one-dimensional data is usually presented well with a bar graph. You can create a bar graph in matplotlib with the command \li{plt.bar()}.
+
+\item A \emph{histogram} depicts a distribution of numerical data (see Figure \ref{fig:visTypes2}).
 Like line plots, histograms can be used to look for trends over time. 
-Another use of a histograms is to investigate statistical distributions. 
+Another use of histograms is to investigate statistical distributions. 
 You can create a histogram in matplotlib with the command \li{plt.hist()}. 
 %TODO: Add a problem that requires them to build a histogram
 
-\item A \emph{pie chart} depicts parts of a whole as slices of a circle. 
-Often, a pie chart is best replaced with a histogram. 
-This is because it is difficult for us to see how similar slices of a pie chart differ in size. 
-By contrast, we can easily detect even small differences in the lengths of rectangles in a bar chart. 
-However, pie charts are ideal for some purposes, especially when the exact numbers from the data are not important. 
+\item A \emph{pie chart} depicts parts of a whole as wedges of a circle. 
+They are ideal for some purposes, especially when the exact numbers from the data are not important. 
 See \cite{piecharts} for some situations where data is best represented by a pie chart. 
 You can create a pie chart in matplotlib with the command \li{plt.pie()}.
 
@@ -52,6 +109,128 @@ More generally, they can be used to compare many sets of similar data (\cite{tuf
 Figure \ref{fig:log_plots} could be called a small multiple, though frequently they contain more subplots. 
 Recall that this kind of plot can be created in matplotlib with the command \li{plt.subplot()}.
 \end{enumerate}
+
+\section*{Variations in visualizations to consider}
+
+\emph{Pie Charts} are often best replaced with bar charts. This is because it is difficult to see how similar wedges of a pie chart differ in area. It can be easier to distinguish between differing areas if the wedges are sorted, as in Figure \ref{fig:piecharts}. 
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{pie_chart.png}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{pie_chart_sorted.png}
+\end{subfigure}
+\caption{Unsorted Pie Chart; Sorted Pie Chart }
+\label{fig:piecharts}
+\end{figure}
+
+
+By contrast, we can easily detect even small differences in the lengths of rectangles in a bar chart. 
+
+\emph{Bar Charts} can be visualized in many different ways and it is important to consider what form best serves both the data and the reader. For example, if the reader will be looking for the largest, smallest, etc., it may be best to sort the data by size; if the reader will be looking up specific values, it may be best to sort the data alphabetically. A general rule is that horizontal charts work better than vertical charts since vertical chart labels tend to run together. An easy solution would be to turn the labels vertical, but some may find that makes them harder to read.
+
+\begin{figure}
+\centering
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{bar_chart_unsorted.png}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{bar_chart_vertical.png}
+\end{subfigure}
+\begin{subfigure}{.2\textwidth}
+\centering
+\includegraphics[width=\textwidth]{bar_chart_vertical_labels.png}
+\end{subfigure}
+\begin{subfigure}{.2\textwidth}
+\centering
+\includegraphics[width=\textwidth]{bar_chart.png}
+\end{subfigure}
+\caption{Unsorted Bar Chart; Vertical Bar Chart; Vertical Labels; Horizontal Bar Chart }
+\label{fig:barcharts}
+\end{figure}
+
+Small multiples are a solution to plotting on top. Consider plotting a few Chebyshev polynomials on top of each other. 
+\begin{lstlisting}
+import numpy as np
+from numpy.polynomial import Chebyshev as T
+from matplotlib import pyplot as plot
+
+x = np.linspace(-1,1,500)
+for i in xrange(6):
+	plt.plot(x, T.basis(i)(x), lw=2, label="$T_%d$"%i)
+plt.legend(loc="upper left")
+
+\end{lstlisting}
+
+There are a few concerns when plotting multiple graphs on top of each other.
+\begin{enumerate}
+\item Did the window shape properly to include all the plots?
+\begin{lstlisting}
+# Since T_0 is not even visible (it runs along the top boundary of the displayed box), we adjust the size by including the following:
+plt.xlim(-1.1,1.1)
+plt.ylim(-1.1,1.1)
+
+\end{lstlisting}
+\item Where is the best location for the legend?
+\begin{lstlisting}
+# You never want to obscure data with a legend or labels, so we do the following:
+ax = plt.gca()
+ax.legend(loc='center left', bbox_to_anchor=(1,0.5))
+\end{lstlisting}
+\item Should you be plotting multiple graphs on top of each other, or would it be better to see them separately? Plotting on top of each other results in constantly looking back and forth between the legend and the cluttered plot to figure out which is which. We can solve this by plotting multiples.
+
+\end{enumerate}
+
+\begin{lstlisting}
+fig = plt.figure(dpi=100)
+fig.set_size_inches(10,10)
+fig.suptitle('Chebyshev Polynomials', fontsize=20)
+
+x = np.linspace(-1,1,500)
+
+for i in range(9):
+    ax = plt.subplot(3,3,i+1)
+    ax.plot(x, T.basis(i)(x), lw=2, label="$T_%d$"%i)
+    plt.xlim(-1.1,1.1)
+    plt.ylim(-1.1,1.1)
+    ax.set_title('$T_%d$'%i)
+    if i%3:
+        ax.set_yticklabels([])
+        ax.yaxis.set_ticks_position('none')
+    if i<6:
+        ax.xaxis.set_ticks_position('none')
+        ax.set_xticklabels([])
+\end{lstlisting}
+
+
+\begin{figure}
+\centering
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{PoT.png}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{PoT_extend_boundary.png}
+\end{subfigure}
+\begin{subfigure}{.2\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{PoT_legend.png}
+\end{subfigure}%
+\begin{subfigure}{.2\textwidth}
+\centering
+  \includegraphics[width=\textwidth]{PoT_separate.png}
+\end{subfigure}
+
+\caption{Plotting on top variations and plotting separately}
+\label{fig:PoT}
+\end{figure}
 
 
 
@@ -97,13 +276,7 @@ As Problem \ref{prob:anscombe} demonstrates, a picture can reveal a data set in 
 Learning from a visualization of a data set is often a recursive process. 
 You must visualize the data, make observations, and then zoom, filter, or otherwise modify your visualization to further explore the data.
 
-One issue to consider is the range. 
-By choosing to plot only a portion of your data, you may be able to focus your attention on the most relevant data. 
-On the other hand, you may also miss some interesting behavior in the data you didn't graph.
 
-Another issue to consider is scale. 
-For example, suppose the number of dogs kept as pets in a certain city increases from 50,000 to 55,000 over 4 years. 
-This increase can appear small or large, depending on where we start the y-axis and how long we stretch out the x-axis (see Figure \ref{fig:dog_plots}).
 
 There are many software packages that facilitate the visual exploration of data. 
 One Python library is Glue (see \cite{glue}).
@@ -194,9 +367,9 @@ Certainly, a data visualization is far more valuable than a thousand data points
 Data visualizations are critical for communication in both business and research.
 
 \subsection*{Choosing the right visualization}
-At this point, you have already used visualization to explore your data and draw conclusions, and you are ready to tell your results to someone else. 
+At this point, you have already used visualization to explore your data and draw conclusions and you are ready to tell your results to someone. 
 The first step in creating a graphic to do this is to choose the right type of visualization. 
-As we saw in the section ``Types of Visualizations,'' there are many possibilities, each with different strengths. 
+As we saw in the sections ``Types of Visualizations'' and ``Variations in visualizations to consider," there are many possibilities, each with different strengths. 
 You should carefully consider which one best suits your data set and communication needs.
 
 \subsection*{Simplify}
@@ -287,18 +460,63 @@ Note how much cleaner this looks than the original.
 
 \subsection*{Color}
 %TODO: explain how you can make a colorbar, either in this lab or the matplotlib lab
+
 Color should be added to your graphic thoughtfully. 
 The default settings in matplotlib should generally not be used. 
 Several bright colors in a single plot often jar the viewer, so you should limit the number and intensity of colors and use them only to emphasize parts of your data. 
-If a grayscale plot contains just as much information as a colored plot, consider using grayscale.
+Hue is generally perceived as unordered as is best used for nominal data (see Figure \ref{fig:hues}). 
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{hue.png}
+\caption{matplotlib hues}
+\label{fig:hues}
+\end{figure}
+
+In comparison, color value is perceived as ordered and is best used for ordinal data (see Figure \ref{fig:colorvals}).  Conveniently, matplotlib has color maps available that can also be used for ordinal data (see Figure \ref{fig:colormap}). 
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{color_value.png}
+\caption{Example of color values}
+\label{fig:colorvals}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{color_map.png}
+\caption{A matplotlib colormap to show ordinal data}
+\label{fig:colormap}
+\end{figure}
+
+If a grayscale plot contains just as much information as a colored plot, consider using the grayscale instead.
 
 The default color settings for pseudocolor plots in matplotlib are particularly problematic. 
-The default color gradient is a rainbow, which usually has no relation to the data. 
+The default color gradient is a rainbow (see Figure \ref{fig:contourmap}), which usually has no relation to the data. 
 Most viewers have trouble remembering which colors are ``high" and which are ``low". 
 Instead, you should set the gradient to cover one or two colors, and when possible these colors should be related to the data you are communicating. 
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{contour_map_rainbow_filled.png}
+\end{subfigure}
+\begin{subfigure}{.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{contour_map_filled.png}
+\end{subfigure}%
+\caption{Contour Maps }
+\label{fig:contourmap}
+\end{figure}
+
+
 You can change the color gradient used by \li{plt.pcolormesh()} with the keyword argument \li{cmap} (short for ``colormap''). 
+
 A list of predefined colormaps is available at \url{http://matplotlib.org/examples/color/colormaps_reference.html}, but you can also define your own. 
+
 See Figure \ref{fig:heatmap} for an example of a good and bad pseudocolor plot.
+
 
 
 \begin{figure}
@@ -318,6 +536,7 @@ The plot at right uses a greyscale, which has two benefits: the colors are not i
 \label{fig:heatmap}
 \end{figure}
 
+
 %TODO: Rewrite this problem to use a specific image with a specific context
 \begin{problem}
 Choose a graph you previously created that you think could use simplification. 
@@ -333,20 +552,104 @@ Simplify your image in any other ways you can think of.
 
 \subsection*{Tell the truth}
 
-Just as graphics can tell your reader about your data, they can also give your viewer false impressions. 
-You should never use data visualization to mislead your reader. 
+Just as graphics can tell your reader about the data, they can also give false impressions. 
+Never use data visualization to mislead your reader. 
 There are many ways pictures can be used to lie, and some of them can be unintentional.
 
-For example, if we see differences in shapes by area, not width or height. 
+For example, differences in shapes by area versus width or height.
 Suppose you are creating a pictogram to demonstrate the recent increase in housing prices, which have doubled in the last $n$ years. 
 So, you draw two houses, one that is 1'' wide and one that is 2'' wide. 
 To a reader, it will appear that housing prices have increased by a factor of $2^2=4$. 
-Hence, you should make pictures proportional in \emph{area} to the numbers they represent.
+Hence, you should make pictures proportional in \emph{area} to the numbers they represent (see Figure \ref{fig:perceptionerror}). 
 
-Scale is also important when you are drawing a line graph or a histogram. 
-Differences between data points can appear small if you zoom out, or large if you zoom in (see Figure \ref{fig:dog_plots}). 
-Also, changing the scale partway along the $x$- or $y$-axis can distort data.
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.4\textwidth}
+\centering
+\includegraphics[width=\textwidth]{PE_problematic_area.png}
+\end{subfigure}
+\begin{subfigure}{.4\textwidth}
+\centering
+\includegraphics[width=\textwidth]{PE_varying_bases.png}
+\end{subfigure}
+\caption{Perception Errors}
+\label{fig:perceptionerror}
+\end{figure}
 
+
+As mentioned above, when visualizing data it is important to make observations, and then zoom, filter, or otherwise modify your visualizations to further explore the data. 
+
+One issue to consider is the range, or where the window is located. By choosing to plot only a portion of the data, you may be able to focus your attention on the most relevant data. Or you might miss some interesting behavior in the data you didn't graph (see Figure \ref{fig:windowcaption}).
+Changing the scale partway along the $x$- or $y$-axis can distort data.
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.4\textwidth}
+\centering
+\includegraphics[width=\textwidth]{scale_line_zoomed_in.png}
+\end{subfigure}
+\begin{subfigure}{.4\textwidth}
+\centering
+\includegraphics[width=\textwidth]{scale_line_zoomed_out.png}
+\end{subfigure}
+\caption{scale difference in a line plot}
+\label{fig:scale_line}
+\end{figure}
+
+
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.4\textwidth}
+\centering
+\includegraphics[width=\textwidth]{scale_scatter_zoomed_in.png}
+\end{subfigure}
+\begin{subfigure}{.4\textwidth}
+\centering
+\includegraphics[width=\textwidth]{scale_scatter_zoomed_out.png}
+\end{subfigure}
+\caption{scale difference in a scatter plot}
+\label{fig:scale_scatter}
+\end{figure}
+
+
+
+Another issue to consider is scale. Differences between data points can appear small if you zoom out, or large if you zoom in (see Figure \ref{fig:scale_line}, \ref{fig:scale_scatter}). 
+
+
+Three-dimensional special effects also tend to be misleading. 
+A 3-D pie chart, for example, can be used to distort the sizes of its slices. 
+Similarly, a 3-D histogram can use perspective to distort the relative differences between bars.
+
+As in any form of communication, integrity is important in data visualization. 
+You will win more respect for yourself and those you represent if you avoid misleading diagrams.
+
+
+
+
+
+
+\begin{figure}
+\centering
+\begin{subfigure}{.4\textwidth}
+\centering
+\includegraphics[width=\textwidth]{window_location_1.png}
+\end{subfigure}
+\begin{subfigure}{.4\textwidth}
+\centering
+\includegraphics[width=\textwidth]{window_location_2.png}
+\end{subfigure}
+\begin{subfigure}{.6\textwidth}
+\centering
+\includegraphics[width=\textwidth]{window_location_3.png}
+\end{subfigure}
+\caption{Window caption matters}
+\label{fig:windowcaption}
+\end{figure}
+
+
+
+\begin{comment}
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{dog_plots.pdf}
@@ -356,12 +659,8 @@ The only difference is the $y$-range. Notice easy it is to manipulate the y-scal
 These figures are especially misleading when we leave the range markers off of the $y$-axes.}
 \label{fig:dog_plots}
 \end{figure}
+\end{comment}
 
-Three-dimensional special effects also tend to be misleading. 
-A 3-D pie chart, for example, can be used to distort the sizes of its slices. 
-Similarly, a 3-D histogram can use perspective to distort the relative differences between bars.
 
-As in any form of communication, integrity is important in data visualization. 
-You will win more respect for yourself and those you represent if you avoid misleading diagrams.
 
 \printbibliography
